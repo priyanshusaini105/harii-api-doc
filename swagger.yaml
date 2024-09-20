@@ -1,0 +1,2369 @@
+openapi: 3.0.0
+info:
+  title: Backend
+  version: 1.0.0
+servers:
+  - url: http://{{url}}
+components:
+  securitySchemes:
+    noauthAuth:
+      type: http
+      scheme: noauth
+    jwtAuth:
+      type: http
+      scheme: jwt
+tags:
+  - name: User [Freelancer]
+  - name: User [Freelancer] > User Auth
+  - name: User [Freelancer] > User Auth > Signup
+  - name: User [Freelancer] > User Auth > Login
+  - name: User [Freelancer] > User Routes
+  - name: User [Freelancer] > User Routes > Profile Routes
+  - name: User [Freelancer] > User Routes > Plans and Pricing Routes
+  - name: User [Freelancer] > User Routes > Portfolio Routes
+  - name: User [Freelancer] > User Routes > Client Routes
+  - name: User [Freelancer] > User Routes > Tool and Service Routes
+  - name: User [Freelancer] > User Routes > Review Routes
+  - name: User [Freelancer] > User Routes > FAQ Routes
+  - name: User [Freelancer] > User Routes > Dashboard Routes
+  - name: User [Freelancer] > User Routes > Subscription Routes
+  - name: Client
+  - name: Client > Client Auth
+  - name: Client > Client Routes
+  - name: Client > Client Routes > Dashboard Routes
+  - name: Client > Client Routes > Subscription Routes
+  - name: Utility
+  - name: Payment
+  - name: Webhook
+paths:
+  /auth/signup:
+    post:
+      tags:
+        - User [Freelancer] > User Auth > Signup
+      summary: Email Signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: lakshya
+                email: lakshya.off31@gmail.com
+                password: '123456'
+      security:
+        - noauthAuth: []
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '1089'
+            ETag:
+              schema:
+                type: string
+                example: W/"441-OjqkjLaQ/38MQduwZOHcSZPCdC8"
+            Date:
+              schema:
+                type: string
+                example: Wed, 28 Aug 2024 13:52:59 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: User created
+                data:
+                  token: >-
+                    Bearer
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2YyYmJiMDk3OTAwZjAyMWNmMmYxNSIsImlhdCI6MTcyNDg1MzE3OSwiZXhwIjoxNzI1NDU3OTc5fQ.yYxH42_A_b44e41MsLgMGFFOBBmj2E4gW_eOgh98wPQ
+                  user:
+                    username: lakshya
+                    email: lakshya.off31@gmail.com
+                    password: >-
+                      $2b$10$uoGV9lbGOCcQ3tU0t4T1y.oc5qtjsqb9QD5HOdlPi7G/SpmPUiJ/q
+                    isGoogleAuth: false
+                    theme:
+                      profile:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      portfolio:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      clients:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      toolsAndServices:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      primary: '#000000'
+                      text: '#ffffff'
+                      isDarkMode: false
+                    profile:
+                      name: lakshya
+                      portfolioLink: https://www.harii.me/lakshya
+                      socialmedia: []
+                      profileImage: >-
+                        https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/default_profile_picture.png
+                    clients: []
+                    toolsAndServices:
+                      services: []
+                      tools: []
+                    _id: 66cf2bbb097900f021cf2f15
+                    portfolio: []
+                    reviews: []
+                    faqs: []
+                    createdAt: '2024-08-28T13:52:59.761Z'
+                    updatedAt: '2024-08-28T13:52:59.761Z'
+                    __v: 0
+  /auth/signup/google:
+    post:
+      tags:
+        - User [Freelancer] > User Auth > Signup
+      summary: Google Signup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: lakshya
+                token: <Google-ID-Token>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/login:
+    post:
+      tags:
+        - User [Freelancer] > User Auth > Login
+      summary: Email Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: lakshya.off31@gmail.com
+                password: '123456'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '1090'
+            ETag:
+              schema:
+                type: string
+                example: W/"442-3oLIAxyAGXPRrlKz4Dy+vIlpiw8"
+            Date:
+              schema:
+                type: string
+                example: Wed, 28 Aug 2024 13:56:58 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Login success
+                data:
+                  token: >-
+                    Bearer
+                    eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Y2YyYmJiMDk3OTAwZjAyMWNmMmYxNSIsImlhdCI6MTcyNDg1MzQxOCwiZXhwIjoxNzI1NDU4MjE4fQ.Yukv_QKgVXVHmHHnwknnJxE42rrJrQEpeiP2sDPqjTo
+                  user:
+                    theme:
+                      profile:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      portfolio:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      clients:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      toolsAndServices:
+                        primary: '#000000'
+                        text: '#ffffff'
+                      primary: '#000000'
+                      text: '#ffffff'
+                      isDarkMode: false
+                    profile:
+                      name: lakshya
+                      portfolioLink: https://www.harii.me/lakshya
+                      socialmedia: []
+                      profileImage: >-
+                        https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/default_profile_picture.png
+                    toolsAndServices:
+                      services: []
+                      tools: []
+                    _id: 66cf2bbb097900f021cf2f15
+                    username: lakshya
+                    email: lakshya.off31@gmail.com
+                    password: >-
+                      $2b$10$uoGV9lbGOCcQ3tU0t4T1y.oc5qtjsqb9QD5HOdlPi7G/SpmPUiJ/q
+                    isGoogleAuth: false
+                    clients: []
+                    portfolio: []
+                    reviews: []
+                    faqs: []
+                    createdAt: '2024-08-28T13:52:59.761Z'
+                    updatedAt: '2024-08-28T13:52:59.761Z'
+                    __v: 0
+  /auth/login/google:
+    post:
+      tags:
+        - User [Freelancer] > User Auth > Login
+      summary: Google Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                token: <Google-ID-Token>
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/profile:
+    put:
+      tags:
+        - User [Freelancer] > User Routes > Profile Routes
+      summary: Update Profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Lakshya Sharma
+                bio: >-
+                  Hello everyone, Lakshya this side. Hope you all are doing
+                  well.
+                socialMedia:
+                  - name: youtube
+                    link: https://www.youtube.com/
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '1092'
+            ETag:
+              schema:
+                type: string
+                example: W/"444-kh5D8kvo6BBflhIMuTnhj+NYDAM"
+            Date:
+              schema:
+                type: string
+                example: Wed, 28 Aug 2024 15:39:33 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Profile Updated
+                data:
+                  theme:
+                    profile:
+                      primary: '#000000'
+                      text: '#ffffff'
+                    portfolio:
+                      primary: '#000000'
+                      text: '#ffffff'
+                    clients:
+                      primary: '#000000'
+                      text: '#ffffff'
+                    toolsAndServices:
+                      primary: '#000000'
+                      text: '#ffffff'
+                    primary: '#000000'
+                    text: '#ffffff'
+                    isDarkMode: false
+                  profile:
+                    name: Lakshya Sharma
+                    portfolioLink: https://www.harii.me/lakshya
+                    socialmedia:
+                      - name: instagram
+                        link: https://www.instagram.com/lakshya.sharma___/
+                        _id: 66cf448f3c8948d838b67569
+                      - name: youtube
+                        link: https://www.youtube.com/
+                        _id: 66cf44b53c8948d838b67572
+                    profileImage: >-
+                      https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/default_profile_picture.png
+                    bio: >-
+                      Hello everyone, Lakshya this side. Hope you all are doing
+                      well.
+                  toolsAndServices:
+                    services: []
+                    tools: []
+                  _id: 66cf2bbb097900f021cf2f15
+                  username: lakshya
+                  email: lakshya.off31@gmail.com
+                  isGoogleAuth: false
+                  clients: []
+                  portfolio: []
+                  reviews: []
+                  faqs: []
+                  createdAt: '2024-08-28T13:52:59.761Z'
+                  updatedAt: '2024-08-28T15:39:33.830Z'
+                  __v: 2
+  /user/plan:
+    put:
+      tags:
+        - User [Freelancer] > User Routes > Plans and Pricing Routes
+      summary: Create Plan
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: ''
+                features:
+                  - ''
+                  - ''
+                price: '1600'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '407'
+            ETag:
+              schema:
+                type: string
+                example: W/"197-Tg8Fp10FagXVBpfpJNMDkh2ZiWo"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 09:44:50 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Plan Created
+                data:
+                  - price:
+                      priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                      price: '1600'
+                    _id: 66e55b129725e21bd1a7f905
+                    isActive: true
+                    userId: 66cf2bbb097900f021cf2f15
+                    productId: prod_QqZg1BI6O30Y6Y
+                    title: Hello Plan by Lakshya
+                    features:
+                      - hello message from lakshya
+                      - and a call :)
+                    createdAt: '2024-09-14T09:44:50.552Z'
+                    updatedAt: '2024-09-14T09:44:50.552Z'
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Plans and Pricing Routes
+      summary: Fetch All Plans
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '429'
+            ETag:
+              schema:
+                type: string
+                example: W/"1ad-kPm6CgauHpcRAo7Vln5FEDcnvSA"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 10:15:52 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Fetch All Plans
+                  value:
+                    success: true
+                    message: Plans fetched successfully
+                    data:
+                      - price:
+                          priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                          price: '1600'
+                        _id: 66e55b129725e21bd1a7f905
+                        isActive: true
+                        userId: 66cf2bbb097900f021cf2f15
+                        productId: prod_QqZg1BI6O30Y6Y
+                        title: Hello Plan by Lakshya
+                        features:
+                          - hello message from lakshya
+                          - and a call :)
+                        createdAt: '2024-09-14T09:44:50.552Z'
+                        updatedAt: '2024-09-14T10:14:08.457Z'
+                        __v: 0
+                example-1:
+                  summary: Fetch Active Plans
+                  value:
+                    success: true
+                    message: Active Plans fetched successfully
+                    data:
+                      - price:
+                          priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                          price: '1600'
+                        _id: 66e55b129725e21bd1a7f905
+                        isActive: true
+                        userId: 66cf2bbb097900f021cf2f15
+                        productId: prod_QqZg1BI6O30Y6Y
+                        title: Hello Plan by Lakshya
+                        features:
+                          - hello message from lakshya
+                          - and a call :)
+                        createdAt: '2024-09-14T09:44:50.552Z'
+                        updatedAt: '2024-09-14T10:14:08.457Z'
+                        __v: 0
+  /user/plan/{id}/disable:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Plans and Pricing Routes
+      summary: Disable Plan
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: _id of plan object
+          example: '{{Sample_PlanId}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '59'
+            ETag:
+              schema:
+                type: string
+                example: W/"3b-h+WmHQBNIWqHbtCrYumLtlcOOrM"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 09:47:33 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Subscription Deleted
+                data: []
+        '400':
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '51'
+            ETag:
+              schema:
+                type: string
+                example: W/"33-e4y5oaNzDQnGJFaQxTqLKLkZBt8"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 09:55:44 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: false
+                message: Plan already disabled
+  /user/plan/{id}/enable:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Plans and Pricing Routes
+      summary: Enable Plan
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: _id of plan object
+          example: '{{Sample_PlanId}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '415'
+            ETag:
+              schema:
+                type: string
+                example: W/"19f-6PV4oth8k8qZTUNhq6nxuDySLMw"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 10:14:08 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Subscription Deleted
+                data:
+                  - price:
+                      priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                      price: '1600'
+                    _id: 66e55b129725e21bd1a7f905
+                    isActive: true
+                    userId: 66cf2bbb097900f021cf2f15
+                    productId: prod_QqZg1BI6O30Y6Y
+                    title: Hello Plan by Lakshya
+                    features:
+                      - hello message from lakshya
+                      - and a call :)
+                    createdAt: '2024-09-14T09:44:50.552Z'
+                    updatedAt: '2024-09-14T10:14:08.457Z'
+        '400':
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '50'
+            ETag:
+              schema:
+                type: string
+                example: W/"32-+oL12NCk4gQSveqyLR3u5mi7StE"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 10:14:40 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: false
+                message: Plan already enabled
+  /user/plan/{id}:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Plans and Pricing Routes
+      summary: Fetch Plan
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of plan] Fetch single Plan Details'
+          example: '{{Sample_PlanId}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '426'
+            ETag:
+              schema:
+                type: string
+                example: W/"1aa-4c73BCTH8exAisPeZnpdM33d4lA"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 10:19:37 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Plan fetched successfully
+                data:
+                  price:
+                    priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                    price: '1600'
+                  _id: 66e55b129725e21bd1a7f905
+                  isActive: true
+                  userId: 66cf2bbb097900f021cf2f15
+                  productId: prod_QqZg1BI6O30Y6Y
+                  title: Hello Plan by Lakshya
+                  features:
+                    - hello message from lakshya
+                    - and a call :)
+                  createdAt: '2024-09-14T09:44:50.552Z'
+                  updatedAt: '2024-09-14T10:14:08.457Z'
+                  __v: 0
+  /user/portfolio:
+    put:
+      tags:
+        - User [Freelancer] > User Routes > Portfolio Routes
+      summary: Update Portfolio
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: Lakshya's Super Portfolio
+                link: lakshyasharma-super.tech
+                images:
+                  - imageUrl: abneknviknekne.222
+                    type: image
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '240'
+            ETag:
+              schema:
+                type: string
+                example: W/"f0-gk3VQ3+Y44XKkgBCDbnv9OV2fqc"
+            Date:
+              schema:
+                type: string
+                example: Thu, 29 Aug 2024 12:44:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create New Portfolio Successfully
+                  value:
+                    success: true
+                    message: Portfolio Updated
+                    data:
+                      - title: Lakshya's Super Computer
+                        link: lakshyasharma.tech
+                        images:
+                          - imageUrl: abc.nikwnojw
+                            type: image
+                            _id: 66d06d1ede1118f77976ac14
+                        _id: 66d06d1ede1118f77976ac13
+                example-1:
+                  summary: Edit Existing Portfolio Successfully
+                  value:
+                    success: true
+                    message: Portfolio Updated
+                    data:
+                      - title: Lakshya's Super Computer
+                        link: lakshyasharma.tech
+                        images:
+                          - imageUrl: abc.nikwnojw
+                            type: image
+                            _id: 66d06d1ede1118f77976ac14
+                        _id: 66d06d1ede1118f77976ac13
+                      - title: Lakshya's Super Portfolio
+                        link: lakshyasharma-super.tech
+                        images:
+                          - imageUrl: abneknviknekne
+                            type: image
+                            _id: 66d08bb6a6c056583502b5f6
+                          - imageUrl: abneknviknekne.222
+                            type: image
+                            _id: 66d0bc4f07888058492b4114
+                        _id: 66d08bb6a6c056583502b5f5
+  /user/portfolio/{id}:
+    delete:
+      tags:
+        - User [Freelancer] > User Routes > Portfolio Routes
+      summary: Delete Portfolio
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Portfolio Id to be removed
+          example: 66d0c2ff35badc493e73f535
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '240'
+            ETag:
+              schema:
+                type: string
+                example: W/"f0-Leud6qBxxGy/4j4d5x2ey2KzpeA"
+            Date:
+              schema:
+                type: string
+                example: Thu, 29 Aug 2024 18:51:11 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Portfolio Deleted
+                data:
+                  - title: Lakshya's Super Computer
+                    link: lakshyasharma.tech
+                    images:
+                      - imageUrl: abc.nikwnojw
+                        type: image
+                        _id: 66d06d1ede1118f77976ac14
+                    _id: 66d06d1ede1118f77976ac13
+  /user/client:
+    put:
+      tags:
+        - User [Freelancer] > User Routes > Client Routes
+      summary: Update Clients
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                clients:
+                  - a
+                  - b
+                  - c
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '65'
+            ETag:
+              schema:
+                type: string
+                example: W/"41-2moLunqhjS8CwZKkfF7WnOOUgTM"
+            Date:
+              schema:
+                type: string
+                example: Fri, 30 Aug 2024 12:20:59 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Clients Updated
+                data:
+                  - a
+                  - b
+                  - c
+  /user/toolandservice:
+    put:
+      tags:
+        - User [Freelancer] > User Routes > Tool and Service Routes
+      summary: Update Tools & Services
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                serviceTitle: This is service title
+                industry: design
+                services:
+                  - web design
+                  - graphic design
+                  - logo design
+                  - branding
+                  - ui/ux design
+                tools:
+                  - adobe xd
+                  - figma
+                  - sketch
+                  - photoshop
+                  - illustrator
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '270'
+            ETag:
+              schema:
+                type: string
+                example: W/"10e-0PpDZFnt332ZJx8NRHFjG4WtZZw"
+            Date:
+              schema:
+                type: string
+                example: Fri, 30 Aug 2024 12:48:38 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Tools and Services Updated
+                data:
+                  serviceTitle: THIS IS SERVICE TITLE
+                  industry: design
+                  services:
+                    - web design
+                    - graphic design
+                    - logo design
+                    - branding
+                    - ui/ux design
+                  tools:
+                    - adobe xd
+                    - figma
+                    - sketch
+                    - photoshop
+                    - illustrator
+        '422':
+          description: Unprocessable Entity
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '64'
+            ETag:
+              schema:
+                type: string
+                example: W/"40-nMi6nUKncAb9juGs+iGtcgRnRMs"
+            Date:
+              schema:
+                type: string
+                example: Fri, 30 Aug 2024 13:06:14 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: false
+                message: Validation Error! Invalid Industry
+  /user/review:
+    put:
+      tags:
+        - User [Freelancer] > User Routes > Review Routes
+      summary: Update Reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: Lakshya Sharma
+                review: Noiceeee 69
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '295'
+            ETag:
+              schema:
+                type: string
+                example: W/"127-aJ1L1v71dSwZauPpl4IAd73zwBY"
+            Date:
+              schema:
+                type: string
+                example: Fri, 30 Aug 2024 16:23:35 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Create New Review
+                  value:
+                    success: true
+                    message: Review Added
+                    data:
+                      - name: Lakshya Sharma
+                        review: Noiceeee
+                        _id: 66d1ec614ec4a9d189cb5144
+                      - name: Lakshya Sharma
+                        review: Noiceeee again
+                        _id: 66d1ec6a4ec4a9d189cb514c
+                      - name: Lakshya Sharma
+                        review: Noiceeee 3
+                        _id: 66d1f2070e8f6d1c0ad0ae8d
+                example-1:
+                  summary: Update Reviews
+                  value:
+                    success: true
+                    message: Review Added
+                    data:
+                      - name: Lakshya Sharma
+                        review: Noiceeee
+                        _id: 66d1ec614ec4a9d189cb5144
+                      - name: Lakshya Sharma
+                        review: Noiceeee again
+                        _id: 66d1ec6a4ec4a9d189cb514c
+                      - name: Lakshya Sharma
+                        review: Noiceeee 3
+                        _id: 66d1f2070e8f6d1c0ad0ae8d
+                example-2:
+                  summary: Update Existing Review
+                  value:
+                    success: true
+                    message: Review Added
+                    data:
+                      - name: Lakshya Sharma
+                        review: Noiceeee
+                        _id: 66d1ec614ec4a9d189cb5144
+                      - name: Lakshya Sharma
+                        review: Noiceeee again
+                        _id: 66d1ec6a4ec4a9d189cb514c
+                      - name: Lakshya Sharma
+                        review: Noiceeee 69
+                        _id: 66d1f2070e8f6d1c0ad0ae8d
+  /user/review/{reviewId}:
+    delete:
+      tags:
+        - User [Freelancer] > User Routes > Review Routes
+      summary: Delete Review
+      parameters:
+        - name: reviewId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: Review Id which have to be removed
+          example: 66d1f1cc0e8f6d1c0ad0ae7b
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '216'
+            ETag:
+              schema:
+                type: string
+                example: W/"d8-Z3qLQ9fbOjGnTdvxqfHDKs5KB5A"
+            Date:
+              schema:
+                type: string
+                example: Fri, 30 Aug 2024 16:22:52 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Review Deleted
+                data:
+                  - name: Lakshya Sharma
+                    review: Noiceeee
+                    _id: 66d1ec614ec4a9d189cb5144
+                  - name: Lakshya Sharma
+                    review: Noiceeee again
+                    _id: 66d1ec6a4ec4a9d189cb514c
+  /user/faq:
+    put:
+      tags:
+        - User [Freelancer] > User Routes > FAQ Routes
+      summary: Update FAQ
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                question: ''
+                answer: ''
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '155'
+            ETag:
+              schema:
+                type: string
+                example: W/"9b-0SRn9Vncaan659hfnVLndNeyGUs"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 10:25:31 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Add New FAQ
+                  value:
+                    success: true
+                    message: FAQs Updated
+                    data:
+                      - question: How is Lakshya Sharma?
+                        answer: A popular developer ;)
+                        _id: 66e5649bbefd24e76cc09aa7
+                example-1:
+                  summary: Updated Existing FAQ
+                  value:
+                    success: true
+                    message: FAQs Updated
+                    data:
+                      - question: How is Lakshya Sharma? and what he do?
+                        answer: >-
+                          A popular developer who is capable of accomplishing
+                          anything ;)
+                        _id: 66e5649bbefd24e76cc09aa7
+  /user/faq/{id}:
+    delete:
+      tags:
+        - User [Freelancer] > User Routes > FAQ Routes
+      summary: Delete FAQ
+      parameters:
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of FAQ] Delete Existing FAQ'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '211'
+            ETag:
+              schema:
+                type: string
+                example: W/"d3-y5wdwV+Wk93+cGtvLHfiIVpVLZ0"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 10:31:24 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: FAQ Deleted
+                data:
+                  - question: How is Lakshya Sharma? and what he do?
+                    answer: >-
+                      A popular developer who is capable of accomplishing
+                      anything ;)
+                    _id: 66e5649bbefd24e76cc09aa7
+  /user/dashboard:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Dashboard Routes
+      summary: Fetch Dashboard
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '441'
+            ETag:
+              schema:
+                type: string
+                example: W/"1b9-PdlOQY2I0wjPY4AF85rrBzDIr7I"
+            Date:
+              schema:
+                type: string
+                example: Sat, 14 Sep 2024 10:32:44 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  totalEarnings: 0
+                  userPlans:
+                    - price:
+                        priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                        price: '1600'
+                      _id: 66e55b129725e21bd1a7f905
+                      isActive: true
+                      userId: 66cf2bbb097900f021cf2f15
+                      productId: prod_QqZg1BI6O30Y6Y
+                      title: Hello Plan by Lakshya
+                      features:
+                        - hello message from lakshya
+                        - and a call :)
+                      createdAt: '2024-09-14T09:44:50.552Z'
+                      updatedAt: '2024-09-14T10:14:08.457Z'
+                      __v: 0
+                  subscriptions: []
+  /user/subscription:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Subscription Routes
+      summary: Fetch All Subscriptions
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/subscription/{planId}:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Subscription Routes
+      summary: Fetch All Subscriptions of a Plan
+      parameters:
+        - name: planId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of Plan] Fetch All Subscription of a Plan'
+          example: '{{Sample_PlanId}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/subscription/{subscriptionId}/fetch:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Subscription Routes
+      summary: Fetch Subscription
+      parameters:
+        - name: subscriptionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of Subscription] Fetch Specific Subscription'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user/subscription/{subscriptionId}/pause:
+    get:
+      tags:
+        - User [Freelancer] > User Routes > Subscription Routes
+      summary: Pause Subscription
+      parameters:
+        - name: subscriptionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of Subscription] Pause Specific Subscription'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /user:
+    get:
+      tags:
+        - User [Freelancer] > User Routes
+      summary: Fetch User Data
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '1087'
+            ETag:
+              schema:
+                type: string
+                example: W/"43f-PRA+gJBYQp9+wrH/hGUFj01m4V4"
+            Date:
+              schema:
+                type: string
+                example: Wed, 28 Aug 2024 17:20:12 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Fetch All User Data
+                  value:
+                    success: true
+                    data:
+                      username: lakshya
+                      email: lakshya.off31@gmail.com
+                      isGoogleAuth: false
+                      theme:
+                        profile:
+                          primary: '#000000'
+                          text: '#ffffff'
+                        portfolio:
+                          primary: '#000000'
+                          text: '#ffffff'
+                        clients:
+                          primary: '#000000'
+                          text: '#ffffff'
+                        toolsAndServices:
+                          primary: '#000000'
+                          text: '#ffffff'
+                        primary: '#000000'
+                        text: '#ffffff'
+                        isDarkMode: false
+                      profile:
+                        name: Lakshya Sharma
+                        bio: >-
+                          Hello everyone, Lakshya this side. Hope you all are
+                          doing well.
+                        socialmedia:
+                          - name: instagram
+                            link: https://www.instagram.com/lakshya.sharma___/
+                            image: >-
+                              https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/SocialMedia/instagram_logo.png
+                          - name: youtube
+                            link: https://www.youtube.com/
+                            image: >-
+                              https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/SocialMedia/youtube_logo.png
+                        profileImage: >-
+                          https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/default_profile_picture.png
+                        portfolioLink: https://www.harii.me/lakshya
+                      portfolio: []
+                      clients: []
+                      toolsAndServices:
+                        services: []
+                        tools: []
+                      reviews: []
+                      faqs: []
+                example-1:
+                  summary: Fetch Profile
+                  value:
+                    success: true
+                    data:
+                      name: Lakshya Sharma
+                      bio: >-
+                        Hello everyone, Lakshya this side. Hope you all are
+                        doing well.
+                      socialmedia:
+                        - name: instagram
+                          link: https://www.instagram.com/lakshya.sharma___/
+                          image: >-
+                            https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/SocialMedia/instagram_logo.png
+                        - name: youtube
+                          link: https://www.youtube.com/
+                          image: >-
+                            https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/SocialMedia/youtube_logo.png
+                      profileImage: >-
+                        https://lakshya-deploy.s3.amazonaws.com/harii.me/images/default/default_profile_picture.png
+                      portfolioLink: https://www.harii.me/lakshya
+  /auth/client:
+    get:
+      tags:
+        - Client > Client Auth
+      summary: Login
+      responses:
+        '400':
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            ETag:
+              schema:
+                type: string
+                example: W/"30-IG6j+RZZQy3huvSyl2Vw/G6nXWw"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 06:45:15 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: false
+                message: Email not provided
+        '404':
+          description: Not Found
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '46'
+            ETag:
+              schema:
+                type: string
+                example: W/"2e-f9EdPMkc61zrIEm+mXnC1qURXhA"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 06:44:04 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: false
+                message: Client not found
+    post:
+      tags:
+        - Client > Client Auth
+      summary: Verify OTP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: lakshya.off31@gmail.com
+                otp: '123456'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /client/dashboard:
+    get:
+      tags:
+        - Client > Client Routes > Dashboard Routes
+      summary: Fetch Dashboard
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /client/subscription:
+    get:
+      tags:
+        - Client > Client Routes > Subscription Routes
+      summary: Fetch All Subscriptions
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '859'
+            ETag:
+              schema:
+                type: string
+                example: W/"35b-L8eXGZG/VLUOuge8HcU6xZlkhno"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 14:43:49 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  - _id: 66e8439bcb82f8af7a2dc6dd
+                    status: active
+                    clientId: 66e836c4dc5418b4f847adb2
+                    planId:
+                      price:
+                        priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                        price: '1600'
+                      _id: 66e55b129725e21bd1a7f905
+                      isActive: true
+                      userId: 66cf2bbb097900f021cf2f15
+                      productId: prod_QqZg1BI6O30Y6Y
+                      title: Hello Plan by Lakshya
+                      features:
+                        - hello message from lakshya
+                        - and a call :)
+                      createdAt: '2024-09-14T09:44:50.552Z'
+                      updatedAt: '2024-09-14T10:14:08.457Z'
+                      __v: 0
+                    stripeSubscriptionId: sub_1Pzg7FSIwFOZonS3hBHkpV5e
+                    logs:
+                      - message: >-
+                          Subscription Activated at Mon, 16 Sep 2024 14:41:25
+                          GMT to Wed, 16 Oct 2024 14:41:25 GMT
+                        _id: 66e8439bcb82f8af7a2dc6de
+                        createdAt: '2024-09-16T14:41:31.169Z'
+                    nextBillingDate: '2024-10-16T14:41:25.000Z'
+                    createdAt: '2024-09-16T14:41:31.181Z'
+                    updatedAt: '2024-09-16T14:41:31.181Z'
+                    __v: 0
+  /client/subscription/{subscriptionId}:
+    get:
+      tags:
+        - Client > Client Routes > Subscription Routes
+      summary: Fetch Subscription
+      parameters:
+        - name: subscriptionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of Subscription] Fetch Specific Subscription'
+          example: '{{Sample_Subscription}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '857'
+            ETag:
+              schema:
+                type: string
+                example: W/"359-Da+7QZ0OW68jWCDzOMekW0dU/eo"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 14:44:43 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                data:
+                  _id: 66e8439bcb82f8af7a2dc6dd
+                  status: active
+                  clientId: 66e836c4dc5418b4f847adb2
+                  planId:
+                    price:
+                      priceId: price_1PysX8SIwFOZonS3z4zXlJve
+                      price: '1600'
+                    _id: 66e55b129725e21bd1a7f905
+                    isActive: true
+                    userId: 66cf2bbb097900f021cf2f15
+                    productId: prod_QqZg1BI6O30Y6Y
+                    title: Hello Plan by Lakshya
+                    features:
+                      - hello message from lakshya
+                      - and a call :)
+                    createdAt: '2024-09-14T09:44:50.552Z'
+                    updatedAt: '2024-09-14T10:14:08.457Z'
+                    __v: 0
+                  stripeSubscriptionId: sub_1Pzg7FSIwFOZonS3hBHkpV5e
+                  logs:
+                    - message: >-
+                        Subscription Activated at Mon, 16 Sep 2024 14:41:25 GMT
+                        to Wed, 16 Oct 2024 14:41:25 GMT
+                      _id: 66e8439bcb82f8af7a2dc6de
+                      createdAt: '2024-09-16T14:41:31.169Z'
+                  nextBillingDate: '2024-10-16T14:41:25.000Z'
+                  createdAt: '2024-09-16T14:41:31.181Z'
+                  updatedAt: '2024-09-16T14:41:31.181Z'
+                  __v: 0
+  /client/subscription/{subscriptionId}/pause:
+    get:
+      tags:
+        - Client > Client Routes > Subscription Routes
+      summary: Pause Subscription
+      parameters:
+        - name: subscriptionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of Subscription] Pause Subscription'
+          example: '{{Sample_Subscription}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '48'
+            ETag:
+              schema:
+                type: string
+                example: W/"30-Lz2ak0zXl7e6m/1LMJv41yhk8KA"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 14:45:18 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Subscription Paused
+  /client/subscription/{subscriptionId}/resume:
+    get:
+      tags:
+        - Client > Client Routes > Subscription Routes
+      summary: Resume Subscription
+      parameters:
+        - name: subscriptionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of Subscription] Resume Subscription'
+          example: '{{Sample_Subscription}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '49'
+            ETag:
+              schema:
+                type: string
+                example: W/"31-M68TbqVt/eucODNhSYA0Dw9mwCg"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 16:23:41 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Subscription Resumed
+  /client/subscription/{subscriptionId}/cancel:
+    get:
+      tags:
+        - Client > Client Routes > Subscription Routes
+      summary: Cancel Subscription
+      parameters:
+        - name: subscriptionId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: '[_id of Subscription] Cancel Subscription'
+          example: '{{Sample_Subscription}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '51'
+            ETag:
+              schema:
+                type: string
+                example: W/"33-9Mutfoy7Tgqe0E98KBPht+1a7Yo"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 16:32:02 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Subscription Cancelled
+  /client:
+    get:
+      tags:
+        - Client > Client Routes
+      summary: Fetch Client Data
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Client > Client Routes
+      summary: Update Client Details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /utility/username/{username}:
+    get:
+      tags:
+        - Utility
+      summary: Check Username
+      parameters:
+        - name: username
+          in: path
+          schema:
+            type: string
+          required: true
+          example: lakshya
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '47'
+            ETag:
+              schema:
+                type: string
+                example: W/"2f-UMdpxfUeTJgKZ+FSKS0TuA1WCfw"
+            Date:
+              schema:
+                type: string
+                example: Wed, 28 Aug 2024 14:15:21 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                example-0:
+                  summary: Username Available
+                  value:
+                    success: true
+                    message: Username available
+                example-1:
+                  summary: Username Already Exist
+                  value:
+                    success: false
+                    message: Username exists
+  /utility/image:
+    post:
+      tags:
+        - Utility
+      summary: '[AUTH] Image Upload'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '165'
+            ETag:
+              schema:
+                type: string
+                example: W/"a5-Fg8MtFHm2V9V4hMHpadkrkxTmIQ"
+            Date:
+              schema:
+                type: string
+                example: Fri, 30 Aug 2024 16:53:22 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Image uploaded
+                data: >-
+                  https://lakshya-deploy.s3.amazonaws.com/harii.me/images/uploads/user/66cf2bbb097900f021cf2f15-1725036801651.jpeg
+  /payment/create-session/{planId}:
+    get:
+      tags:
+        - Payment
+      summary: Create Payment Session via Stripe
+      parameters:
+        - name: email
+          in: query
+          schema:
+            type: string
+          required: true
+          description: Email of User
+          example: lakshya.off31@gmail.com
+        - name: planId
+          in: path
+          schema:
+            type: string
+          required: true
+          description: >-
+            [_id of Plan] For which you want to create Cheakout Session of
+            Stripe
+          example: '{{Sample_PlanId}}'
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              schema:
+                type: string
+                example: Express
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+                example: '*'
+            Content-Type:
+              schema:
+                type: string
+                example: application/json; charset=utf-8
+            Content-Length:
+              schema:
+                type: integer
+                example: '143'
+            ETag:
+              schema:
+                type: string
+                example: W/"8f-VIDVDX5GjK6ojRKbecKroF42TV8"
+            Date:
+              schema:
+                type: string
+                example: Mon, 16 Sep 2024 13:38:22 GMT
+            Connection:
+              schema:
+                type: string
+                example: keep-alive
+            Keep-Alive:
+              schema:
+                type: string
+                example: timeout=5
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                success: true
+                message: Checkout Session Created
+                data:
+                  sessionId: >-
+                    cs_test_a1Wt3eWbLvjHnMBoZgwM93calh6X4yUqOxXsqxd0XcbKqUXOnmGWnweCNN
